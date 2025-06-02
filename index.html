@@ -1,0 +1,1378 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>JoeyNMT</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="2067f2de-9609-8095-94f1-ec2c4f72c87f" class="page sans"><header><h1 class="page-title">JoeyNMT</h1><p class="page-description"></p></header><div class="page-body"><p id="2067f2de-9609-8045-8834-e3ea91ab36ad" class="">
+</p><figure class="block-color-gray_background callout" style="white-space:pre-wrap;display:flex" id="2067f2de-9609-804e-b4e0-f4338a598ee5"><div style="font-size:1.5em"><span class="icon">📌</span></div><div style="width:100%"><p id="2067f2de-9609-8019-9e26-fc8232872520" class="">到達目標：LLMの内部を理解し操作することができる</p></div></figure><p id="2067f2de-9609-804c-84e0-f86609480d41" class="">
+</p><hr id="2067f2de-9609-80a4-a027-effe24bf2c69"/><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">1. JoeyNMTの構築&amp;訓練と評価</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">1. JoeyNMTの訓練＆評価, small_parallel_enja翻訳(ja→en)</summary><div class="indented"><hr id="2067f2de-9609-8007-80b4-def8bd9a5648"/><p id="2067f2de-9609-8085-9f91-ff40ce735d1a" class="">small_parallel_enjaコーパスのダウンロード</p><p id="2067f2de-9609-8040-97bf-da217c119511" class="">※orig→元のコーパス, tok→トークナイズされたコーパス</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-805b-b87b-c938729d7d75" class="code"><code class="language-Python">git clone https://github.com/odashi/small_parallel_enja.git</code></pre><p id="2067f2de-9609-80ef-a272-e4152e8bcbec" class="">
+</p><p id="2067f2de-9609-80f6-bde9-d3f5da19d667" class="">JoeyNMTのインストール</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-806f-a4ca-fdec24542ad9" class="code"><code class="language-Python">git clone https://github.com/joeynmt/joeynmt.git
+uv add -r joeynmt/requirements.txt
+uv add sacrebleu # sacreBLEUのインストール
+uv add sacrebleu[ja]
+cd joeynmt</code></pre><p id="2067f2de-9609-80da-9f1e-f416fafe3cae" class="">
+</p><p id="2067f2de-9609-8029-b982-f73a31f8051f" class="">コードテスト</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80a3-a424-ef764092fa7f" class="code"><code class="language-Python">python3 -m unittest
+
+# エラーが出た時
+uv add importlib_metadata
+uv add --editable . --dev</code></pre><p id="2067f2de-9609-80b9-9dac-ede1f382608f" class="">
+</p><p id="2067f2de-9609-80d7-81f4-f8284b389b72" class="">small_parallel_enja翻訳用のディレクトリを作成&amp;学習用のファイルを用意</p><p id="2067f2de-9609-80c3-8afe-ced09c412d86" class="">※./joeynmt/scripts/にbuild_vocab.pyがあったため、そちらを使った方が良いかもしれない</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-808d-97a7-ceff78f71188" class="code"><code class="language-Python">mkdir -p small_parallel_jaen
+cp /home/nishida/b4/joeynmt/small_parallel_enja/train.ja small_parallel_jaen/train.ja
+cp /home/nishida/b4/joeynmt/small_parallel_enja/train.en small_parallel_jaen/train.en</code></pre><p id="2067f2de-9609-80ff-9780-c2a68794571a" class="">
+</p><p id="2067f2de-9609-8090-92b7-ebcc3ea6d00f" class="">SentencePieceモデルの学習</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80fe-80ba-ef9bb620de19" class="code"><code class="language-Python">spm_train --input=small_parallel_jaen/train.ja --model_prefix=small_parallel_jaen/spm.ja --vocab_size=9000 --character_coverage=0.9995 --model_type=bpe
+spm_train --input=small_parallel_jaen/train.en --model_prefix=small_parallel_jaen/spm.en --vocab_size=5000 --character_coverage=1.0 --model_type=bpe</code></pre><p id="2067f2de-9609-8078-8dc8-fc2adb410e08" class="">
+</p><p id="2067f2de-9609-804b-872e-c4a4a57d3e4e" class="">SentencePieceの語彙ファイルをJoeyNMT用に変換</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-807e-9295-ed55e1a180a5" class="code"><code class="language-Python">cut -f1 small_parallel_jaen/spm.ja.vocab | head -n 9000 &gt; small_parallel_jaen/src_vocab.txt
+cut -f1 small_parallel_jaen/spm.en.vocab | head -n 5000 &gt; small_parallel_jaen/trg_vocab.txt</code></pre><p id="2067f2de-9609-8078-9f2f-dc07f8101de6" class="">
+</p><p id="2067f2de-9609-80ee-ba92-fedaa03f5089" class="">yamlファイルの設定（./joeynmt/configsファイル内で自分で作成）</p><p id="2067f2de-9609-80ff-8c76-fa0b423d3ad2" class="">※early_stoppingが効かない不具合が発生しているため、自分で作った方が良いかも。おそらくschedulingのせいで学習率が低くなっているので、&quot;plateau&quot;にすると解決するかも。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8057-9776-e72310aad86c" class="code"><code class="language-Python">name: &quot;small_parallel_jaen&quot;
+
+data:
+  train: &quot;/home/nishida/b4/joeynmt/small_parallel_enja/train&quot;
+  dev: &quot;/home/nishida/b4/joeynmt/small_parallel_enja/dev&quot;
+  test: &quot;/home/nishida/b4/joeynmt/small_parallel_enja/test&quot;
+  dataset_type: &quot;plain&quot;
+  src:
+    lang: &quot;ja&quot;
+    level: &quot;bpe&quot;
+    voc_file: &quot;small_parallel_jaen/src_vocab.txt&quot;
+    tokenizer_type: &quot;sentencepiece&quot;
+    tokenizer_cfg:
+      model_file: &quot;small_parallel_jaen/spm.ja.model&quot;
+  trg:
+    lang: &quot;en&quot;
+    level: &quot;bpe&quot;
+    voc_file: &quot;small_parallel_jaen/trg_vocab.txt&quot;
+    tokenizer_type: &quot;sentencepiece&quot;
+    tokenizer_cfg:
+      model_file: &quot;small_parallel_jaen/spm.en.model&quot;
+
+testing:
+  n_best: 1
+  beam_size: 6
+  beam_alpha: 1.0
+  batch_size: 1024
+  batch_type: &quot;token&quot;
+  max_output_length: 100
+  eval_metrics: [&quot;bleu&quot;]
+  return_prob: &quot;none&quot;
+  return_attention: False
+  generate_unk: False
+  no_repeat_ngram_size: -1
+  repetition_penalty: -1
+  sacrebleu_cfg:
+    tokenize: &quot;intl&quot; # ja-mecab
+
+training:
+	# load_model: &quot;small_parallel_enja/model/???.ckpt&quot;
+	reset_best_ckpt: False
+	reset_scheduler: False
+	reset_optimizer: False
+	reset_iter_state: False
+	random_seed: 42
+	optimizer: &quot;adamw&quot;
+	normalization: &quot;tokens&quot;
+	adam_betas: [0.9, 0.98]
+	scheduling: &quot;warmupinversesquareroot&quot;
+	loss: &quot;crossentropy&quot;
+	learning_rate: 0.001
+	learning_rate_min: 1.0e-06
+	learning_rate_warmup: 4000
+	clip_grad_norm: 1.0
+	weight_decay: 0.0
+	label_smoothing: 0.1
+	batch_multiplier: 8
+	batch_size: 512 # 2048 per device
+	batch_type: &quot;token&quot;
+	early_stopping: True
+	early_stopping_metric: &quot;bleu&quot;
+	patience: 5
+	minimize_valid_metric: True
+	epochs: 10000
+	updates: 100000
+	validation_freq: 200
+	logging_freq: 200
+  model_dir: &quot;small_parallel_jaen/model_1&quot;
+  overwrite: False # small_parallel_jaen内の全てのファイルが消される
+  shuffle: True
+  use_cuda: True
+  fp16: True
+  print_valid_sents: [0, 1, 2, 3, 4]
+  keep_best_ckpts: 5
+  num_workers: 0
+
+model:
+  initializer: &quot;xavier_uniform&quot;
+	embed_initializer: &quot;xavier_uniform&quot;
+  embed_init_gain: 1.0
+  init_gain: 1.0
+  bias_initializer: &quot;zeros&quot;
+  tied_embeddings: False
+  tied_softmax: False
+  encoder:
+    type: &quot;transformer&quot;
+    num_layers: 8
+    num_heads: 16
+    embeddings:
+      embedding_dim: 1024
+      scale: True
+      dropout: 0.
+    hidden_size: 1024
+    ff_size: 4096
+    dropout: 0.3
+    layer_norm: &quot;pre&quot;
+  decoder:
+    type: &quot;transformer&quot;
+    num_layers: 6
+    num_heads: 16
+    embeddings:
+      embedding_dim: 1024
+      scale: True
+      dropout: 0.
+    hidden_size: 1024
+    ff_size: 4096
+    dropout: 0.3
+    layer_norm: &quot;pre&quot;</code></pre><p id="2067f2de-9609-804f-af32-f381450a6e17" class="">
+</p><p id="2067f2de-9609-80ba-9efd-da2cd0055293" class="">訓練の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8017-bae9-c2328d5eaf80" class="code"><code class="language-Python">screen -S train_joeynmt_1 bash -c &#x27;CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt train configs/small_parallel_jaen.yaml&#x27;</code></pre><p id="2067f2de-9609-8001-af1f-d92aa214061c" class="">
+</p><p id="2067f2de-9609-8049-a5ac-e86761c8e223" class="">評価の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-807b-aebf-d6a869340847" class="code"><code class="language-Python">CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt test small_parallel_jaen/model_1/config.yaml</code></pre><p id="2067f2de-9609-8073-9c22-fc2497f23d63" class="">
+</p><p id="2067f2de-9609-8087-998a-d60a00d3f54a" class="">sacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8020-806c-d8560008ad9d" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  36.76, 0.0195[sec]</code></pre><p id="2067f2de-9609-8075-ba0f-fee22761951a" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">2. 事前学習済みJoeyNMTの評価, KFTT翻訳(ja→en)</summary><div class="indented"><hr id="2067f2de-9609-808b-8fc7-d8a2b2c4a9ea"/><p id="2067f2de-9609-80a1-9714-e259a208f268" class="">KFTTコーパスのダウンロード</p><p id="2067f2de-9609-803e-bcab-cd9b8c020411" class="">※orig→元のコーパス, tok→トークナイズされたコーパス</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8009-9473-c36ba34c4435" class="code"><code class="language-Python">wget https://phontron.com/kftt/download/kftt-data-1.0.tar.gz
+tar -zxvf kftt-data-1.0.tar.gz
+rm kftt-data-1.0.tar.gz</code></pre><p id="2067f2de-9609-8046-88dd-f95c8ecc43d4" class="">
+</p><p id="2067f2de-9609-809f-8b2e-f8a3fed14086" class="">事前学習済みJoeyNMTのインストール（./joeynmtファイル内）</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-803e-af93-f7be8be7cdff" class="code"><code class="language-Python">wget https://cl.uni-heidelberg.de/statnlpgroup/joeynmt2/jparacrawl_jaen.tar.gz
+tar -zxvf jparacrawl_jaen.tar.gz
+rm jparacrawl_jaen.tar.gz</code></pre><p id="2067f2de-9609-8076-95a4-d89cd13f9a31" class="">
+</p><p id="2067f2de-9609-80a0-8a56-cf64ace275a3" class="">yamlファイルの設定（検証と評価で使うファイルをkfttコーパスに変更, ファイルは元からある）</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8004-899d-d9e85c7302a2" class="code"><code class="language-Python">data:
+  dev: &quot;/home/nishida/b4/joeynmt/kftt-data-1.0/data/orig/kyoto-dev&quot;
+  test: &quot;/home/nishida/b4/joeynmt/kftt-data-1.0/data/orig/kyoto-test&quot;</code></pre><p id="2067f2de-9609-80a2-a41f-fce793d514be" class="">
+</p><p id="2067f2de-9609-801e-bdfb-f082edb443dd" class="">評価の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80b5-9809-dc43c590a2fe" class="code"><code class="language-Python">CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt test jparacrawl_jaen/config.yaml</code></pre><p id="2067f2de-9609-80e0-b8f4-ecaa72cde110" class="">
+</p><p id="2067f2de-9609-80b7-a41d-e24b9e58eaa5" class="">sacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8073-9f6b-d11e4ee0f9d9" class="code"><code class="language-Python"> Evaluation result (beam search): bleu:  11.49, 0.1077[sec]</code></pre><p id="2067f2de-9609-80db-b0f8-f37b2c119315" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">追. model_1のいらないファイルを削除</summary><div class="indented"><hr id="2067f2de-9609-805c-ac48-d6c04102d797"/><p id="2067f2de-9609-8055-b0d8-e98497a1d85f" class="">.hypsといったファイルを削除するスクリプトの作成（./joeynmt/scriptsファイル内で自分で作成）</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80b7-8cb6-dc1b6b99142c" class="code"><code class="language-Python">import os
+import glob
+
+def clean_files(directory):
+    extensions = [&quot;.hyps&quot;, &quot;.refs&quot;, &quot;.loss&quot;, &quot;.bleu&quot;]
+    if not os.path.exists(directory):
+        print(f&quot;Directory does not exist: {directory}&quot;)
+        return
+
+    removed = 0
+    for ext in extensions:
+        pattern = os.path.join(directory, f&quot;*{ext}&quot;)
+        for file_path in glob.glob(pattern):
+            os.remove(file_path)
+            print(f&quot;Deleted: {file_path}&quot;)
+            removed += 1
+
+    if removed == 0:
+        print(&quot;No files matched for deletion.&quot;)
+    else:
+        print(f&quot;{removed} files deleted.&quot;)</code></pre><p id="2067f2de-9609-800a-ba53-cd9b095d77a0" class="">
+</p><p id="2067f2de-9609-800f-9ddf-e7786d2121db" class="">clean.pyをコマンドラインから実行するためのスクリプトの作成（./joeynmt/scriptsファイル内で自分で作成）</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-805d-ae02-e8dc864d37ac" class="code"><code class="language-Python">import sys
+from .clean import clean_files
+
+def main():
+    if len(sys.argv) &lt; 3:
+        print(&quot;Usage: python3 -m scripts &lt;command&gt; &lt;target_directory&gt;&quot;)
+        sys.exit(1)
+
+    command = sys.argv[1]
+    target_dir = sys.argv[2]
+
+    if command == &quot;clean&quot;:
+        clean_files(target_dir)
+    else:
+        print(f&quot;Unknown command: {command}&quot;)
+        sys.exit(1)
+
+if __name__ == &quot;__main__&quot;:
+    main()</code></pre><p id="2067f2de-9609-80b7-bc1a-d448ee0ad3f2" class="">
+</p><p id="2067f2de-9609-80b5-af9c-f21a8c953617" class="">必要がないファイルを削除</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80c9-80e1-f88cafff27cc" class="code"><code class="language-Python">python3 -m scripts clean small_parallel_jaen/model_1</code></pre><p id="2067f2de-9609-8096-8155-c82cfa80dd6e" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">没. JoeyNMTの訓練＆評価, KFTT翻訳(ja→en)</summary><div class="indented"><hr id="2067f2de-9609-801c-b84b-cfa9df507a62"/><p id="2067f2de-9609-8071-9f6a-e8d70349b959" class="">JoeyNMTのインストール</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-803a-b7bc-f17d95f24bf4" class="code"><code class="language-Python">git clone https://github.com/joeynmt/joeynmt.git
+uv add -r joeynmt/requirements.txt
+uv add sacrebleu # sacreBLEUのインストール
+cd joeynmt</code></pre><p id="2067f2de-9609-8045-bf08-cdee14d11516" class="">
+</p><p id="2067f2de-9609-808a-bf9d-e617d37fa508" class="">コードテスト</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80b5-9fb8-f8705f9fcc43" class="code"><code class="language-Python">python3 -m unittest
+
+# エラーが出た時
+uv add importlib_metadata
+uv add --editable . --dev</code></pre><p id="2067f2de-9609-80bd-934b-dc90b2084071" class="">
+</p><p id="2067f2de-9609-80ca-977c-c795434aee9b" class="">KFTT翻訳用のディレクトリを作成&amp;学習用のファイルを用意</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8079-a896-f79cf78b52cf" class="code"><code class="language-Python">mkdir -p kftt_jaen
+cp /home/nishida/b4/joeynmt/kftt-data-1.0/data/orig/kyoto-train.ja kftt_jaen/train.ja
+cp /home/nishida/b4/joeynmt/kftt-data-1.0/data/orig/kyoto-train.en kftt_jaen/train.en</code></pre><p id="2067f2de-9609-807c-acbb-e27b04869f04" class="">
+</p><p id="2067f2de-9609-80e6-9c57-c10d700051a0" class="">SentencePieceモデルの学習</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80ba-8bce-e4784ca54671" class="code"><code class="language-Python">spm_train --input=kftt_jaen/train.ja --model_prefix=kftt_jaen/spm.ja --vocab_size=9000 --character_coverage=0.9995 --model_type=bpe
+spm_train --input=kftt_jaen/train.en --model_prefix=kftt_jaen/spm.en --vocab_size=5000 --character_coverage=1.0 --model_type=bpe</code></pre><p id="2067f2de-9609-80cc-a136-d992341ba283" class="">
+</p><p id="2067f2de-9609-8027-9d1c-f07e46f4c340" class="">SentencePieceの語彙ファイルをJoeyNMT用に変換</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8028-bc3e-f4e8ebe60d3d" class="code"><code class="language-Python">cut -f1 kftt_jaen/spm.ja.vocab | head -n 9000 &gt; kftt_jaen/src_vocab.txt
+cut -f1 kftt_jaen/spm.en.vocab | head -n 5000 &gt; kftt_jaen/trg_vocab.txt</code></pre><p id="2067f2de-9609-8012-ac6b-e1eadd26e50b" class="">
+</p><p id="2067f2de-9609-8044-bda0-e81b8a4e201c" class="">yamlファイルの設定（./joeynmt/configsファイル内で自分で作成）</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-807e-bee1-dda80a61087d" class="code"><code class="language-Python">name: &quot;kftt_jaen&quot;
+
+data:
+  train: &quot;kftt_jaen/train&quot;
+  dev: &quot;/home/nishida/b4/joeynmt/kftt-data-1.0/data/orig/kyoto-dev&quot;
+  test: &quot;/home/nishida/b4/joeynmt/kftt-data-1.0/data/orig/kyoto-test&quot;
+  dataset_type: &quot;plain&quot;
+  src:
+    lang: &quot;ja&quot;
+    level: &quot;bpe&quot;
+    voc_file: &quot;kftt_jaen/src_vocab.txt&quot;
+    tokenizer_type: &quot;sentencepiece&quot;
+    tokenizer_cfg:
+      model_file: &quot;kftt_jaen/spm.ja.model&quot;
+  trg:
+    lang: &quot;en&quot;
+    level: &quot;bpe&quot;
+    voc_file: &quot;kftt_jaen/trg_vocab.txt&quot;
+    tokenizer_type: &quot;sentencepiece&quot;
+    tokenizer_cfg:
+      model_file: &quot;kftt_jaen/spm.en.model&quot;
+
+testing:
+  n_best: 1
+  beam_size: 6
+  beam_alpha: 1.0
+  batch_size: 1024
+  batch_type: &quot;token&quot;
+  max_output_length: 100
+  eval_metrics: [&quot;bleu&quot;]
+  return_prob: &quot;none&quot;
+  return_attention: False
+  generate_unk: False
+  no_repeat_ngram_size: -1
+  repetition_penalty: -1
+  sacrebleu_cfg:
+    tokenize: &quot;intl&quot;
+
+training:
+  # load_model: &quot;kftt_jaen/model/???.ckpt&quot;
+  reset_best_ckpt: False
+  reset_scheduler: False
+  reset_optimizer: False
+  reset_iter_state: False
+  random_seed: 42
+  optimizer: &quot;adam&quot;
+  normalization: &quot;tokens&quot;
+  adam_betas: [0.9, 0.98]
+  scheduling: &quot;warmupinversesquareroot&quot;
+  loss: &quot;crossentropy&quot;
+  learning_rate: 0.001
+  learning_rate_min: 1.0e-09
+  learning_rate_warmup: 4000
+  clip_grad_norm: 1.0
+  weight_decay: 0.0
+  label_smoothing: 0.1
+  batch_multiplier: 8
+  batch_size: 512 # 2048 per device
+  batch_type: &quot;token&quot;
+  early_stopping_metric: &quot;bleu&quot;
+  epochs: 5
+  updates: 100000
+  validation_freq: 1000
+  logging_freq: 200
+  model_dir: &quot;kftt_jaen/model&quot;
+  overwrite: False # kftt_jaen内の全てのファイルが消される
+  shuffle: True
+  use_cuda: True
+  fp16: False
+  print_valid_sents: [2000, 2001, 2002, 2003, 2004]
+  keep_best_ckpts: 5
+  num_workers: 0
+
+model:
+  initializer: &quot;xavier&quot;
+  embed_initializer: &quot;xavier&quot;
+  embed_init_gain: 1.0
+  init_gain: 1.0
+  bias_initializer: &quot;zeros&quot;
+  tied_embeddings: False
+  tied_softmax: False
+  encoder:
+    type: &quot;transformer&quot;
+    num_layers: 8
+    num_heads: 16
+    embeddings:
+      embedding_dim: 1024
+      scale: True
+      dropout: 0.
+    hidden_size: 1024
+    ff_size: 4096
+    dropout: 0.3
+    layer_norm: &quot;pre&quot;
+  decoder:
+    type: &quot;transformer&quot;
+    num_layers: 6
+    num_heads: 16
+    embeddings:
+      embedding_dim: 1024
+      scale: True
+      dropout: 0.
+    hidden_size: 1024
+    ff_size: 4096
+    dropout: 0.3
+    layer_norm: &quot;pre&quot;</code></pre><p id="2067f2de-9609-80ef-ac92-ed448592774e" class="">
+</p><p id="2067f2de-9609-8012-b0d5-d935ab17712f" class="">訓練の実行（1エポック3時間くらいかかる）</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8086-9e58-c85982e059ad" class="code"><code class="language-Python">screen -S train_joeynmt bash -c &#x27;CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt train configs/kftt_jaen.yaml&#x27;</code></pre><p id="2067f2de-9609-8056-adca-f18ef8164b92" class="">
+</p><p id="2067f2de-9609-80d5-96b2-f4fceab48919" class="">評価の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8052-a0b6-cab9b0a59a1c" class="code"><code class="language-Python">CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt test kftt_jaen/model/config.yaml</code></pre></div></details></div></details><hr id="2067f2de-9609-8045-90e7-d4e0b713aa80"/><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">2. 相対位置エンコーディングの実装</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">1. 相対位置エンコーディングの理解</summary><div class="indented"><hr id="2067f2de-9609-80fe-9f50-d7677536430c"/><h3 id="2067f2de-9609-801e-a646-dc8843d74375" class="">相対位置エンコーディングの重要性<a href="https://www.nomuyu.com/positional-encoding/">[1]</a><a href="https://www.nomuyu.com/transformer/">[2]</a></h3><p id="2067f2de-9609-804f-92fe-fc6a247b4992" class=""><strong>機械翻訳</strong>: 翻訳においては、文法構造や意味の正確な伝達は単語間の相対的な位置関係に強く依存する。文の構造は言語間で異なるため、相対位置が重要な指標となる。</p><p id="2067f2de-9609-8032-9975-d46703102492" class="">
+</p><h3 id="2067f2de-9609-806c-abc7-fe2cfd202407" class="">相対位置エンコーディングの計算方法<a href="https://qiita.com/masaki_kitayama/items/01a214c07b2efa8aed1b">[3]</a><a href="https://arxiv.org/abs/1803.02155">[4]</a><a href="https://github.com/jason9693/MusicTransformer-pytorch">[5]</a></h3><ul id="2067f2de-9609-809d-853f-c64b808bbcc8" class="bulleted-list"><li style="list-style-type:disc">Self-Attentionにおいて、QWKの計算中で実装を行うものである。</li></ul><ul id="2067f2de-9609-8028-8978-ce5071f78bbd" class="bulleted-list"><li style="list-style-type:disc">通常のAttentionScore＝QK^TにS_relを加算<figure id="2067f2de-9609-80db-a98b-c05cea78b7cc" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>AttentionScore</mtext><mo>=</mo><mi>Q</mi><msup><mi>K</mi><mi mathvariant="normal">⊤</mi></msup><mo>+</mo><msub><mi>S</mi><mtext>rel</mtext></msub></mrow><annotation encoding="application/x-tex">\text{AttentionScore} = QK^\top + S_{\text{rel}}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord text"><span class="mord">AttentionScore</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.0935em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">Q</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8991em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">⊤</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.05764em;">S</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.0576em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">rel</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></div></figure><p id="2067f2de-9609-80a5-b19a-f27417b79a6d" class="">S_rel：トークンiとそこからの距離に基づいて決定されるQK^Tの補正値</p></li></ul><ul id="2067f2de-9609-8043-bc83-ccb01470871e" class="bulleted-list"><li style="list-style-type:disc">S_relを、embeddingとQueryとの内積で計算<p id="2067f2de-9609-807f-a0a3-f5f012d69d21" class="">効率的に求めるため、計算にSkewアルゴリズムを用いる</p></li></ul><p id="2067f2de-9609-80ae-8426-dfbff6a5aca1" class="">
+</p><h3 id="2067f2de-9609-8082-bc36-c739ea1eb2a2" class="">参考資料</h3><p id="2067f2de-9609-8027-b9b5-e10eff0eac50" class="">[1] <a href="https://www.nomuyu.com/positional-encoding/#st-toc-h-8">Positional Encoding徹底解説：Sinusoidal（絶対位置）から相対位置エンコーディング - nomulog</a></p><p id="2067f2de-9609-802c-beca-c2aa7ca5c64e" class="">[2] <a href="https://www.nomuyu.com/transformer/">Transformerとは？世界を変えた深層学習モデルの仕組みをわかりやすく徹底解説 - nomulog</a></p><p id="2067f2de-9609-80b0-bcdd-cff776143dda" class="">[3] <a href="https://qiita.com/masaki_kitayama/items/01a214c07b2efa8aed1b">Transformerにおける相対位置エンコーディングを理解する。 #機械学習 - Qiita</a></p><p id="2067f2de-9609-80f5-939c-fdff2162213b" class="">[4] <a href="https://arxiv.org/abs/1803.02155">[1803.02155] Self-Attention with Relative Position Representations</a></p><p id="2067f2de-9609-8024-a7b8-ca29ffa35691" class="">[5] <a href="https://github.com/jason9693/MusicTransformer-pytorch">MusicTransformer-pytorch (GitHub)</a></p><p id="2067f2de-9609-809d-8961-dc7d17ed6d1f" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">2. 相対位置エンコーディングの実装</summary><div class="indented"><hr id="2067f2de-9609-809d-a058-d8c141154937"/><p id="2067f2de-9609-80bc-a20d-d17bea6a3ad7" class="">transformer_layers.pyにあるMultiHeadedAttentionで相対位置エンコーディングを実装</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-808b-9731-db7ed440d263" class="code"><code class="language-Python">self.len_k = None
+self.max_seq = 2048
+self.E = nn.Parameter(torch.randn(self.max_seq, self.head_size))</code></pre><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80e9-afe6-fd0bd2875366" class="code"><code class="language-Python"># [batch_size, num_heads, query_len, key_len]
+scores = torch.matmul(q, k.transpose(2, 3))
+
+# 相対位置エンコーディングの計算
+if torch.equal(q, k): # Self-Attentionのみ
+    self.len_k = k.size(2)
+    self.len_q = q.size(2)
+    E = self._get_left_embedding(self.len_q, self.len_k).to(q.device)
+    QE = torch.einsum(&#x27;bhld,md-&gt;bhlm&#x27;, [q, E])
+    QE = self._qe_masking(QE)
+    Srel = self._skewing(QE)
+    scores += Srel
+
+# compute scores
+scores = scores / math.sqrt(self.head_size)</code></pre><p id="2067f2de-9609-80ed-ad4a-ea2a15fa1419" class="">
+</p><p id="2067f2de-9609-80ec-b797-eecd13a8bf39" class="">それに伴い、MultiHeadedAttentionに関数を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-809d-9cfc-d6388c96f464" class="code"><code class="language-Python">def _get_left_embedding(self, len_q, len_k):
+    starting_point = max(0,self.max_seq-len_q)
+    e = self.E[starting_point:,:]
+    return e
+
+def _skewing(self, tensor: torch.Tensor):
+    padded = F.pad(tensor, [1, 0, 0, 0, 0, 0, 0, 0])
+    reshaped = torch.reshape(padded, shape=[padded.size(0), padded.size(1), padded.size(-1), padded.size(-2)])
+    Srel = reshaped[:, :, 1:, :]
+    if self.len_k &gt; self.len_q:
+        Srel = F.pad(Srel, [0, 0, 0, 0, 0, 0, 0, self.len_k-self.len_q])
+    elif self.len_k &lt; self.len_q:
+        Srel = Srel[:, :, :, :self.len_k]
+  return Srel
+
+@staticmethod
+def _qe_masking(qe):
+    query_len = qe.size(-2)
+    key_len = qe.size(-1)
+    mask = torch.arange(key_len, device=qe.device).unsqueeze(0) &lt;= \
+        torch.arange(query_len, device=qe.device).unsqueeze(1)
+    mask = mask.to(qe.dtype)
+    return qe * mask.unsqueeze(0).unsqueeze(0) </code></pre><p id="2067f2de-9609-8089-bbac-c7643fb29ebe" class="">
+</p><h3 id="2067f2de-9609-8044-afcc-ea4bfad342ae" class="">small_parallel_enja翻訳(ja→en)での評価 ※追をやるなら<a href="https://www.notion.so/1d5f2081aadb803f8d7fd3a8d41e54c5?pvs=21">そちら</a>を先に</h3><p id="2067f2de-9609-80e2-b83a-d328d9569fae" class="">任意：yamlファイルの設定を書き換える</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8064-a1d3-d16bf2dbd0f9" class="code"><code class="language-Python">training:
+  model_dir: &quot;small_parallel_jaen/model_2&quot;</code></pre><p id="2067f2de-9609-80f5-ac35-f65ff527b74f" class="">
+</p><p id="2067f2de-9609-801b-bc3e-f364dab02156" class="">訓練の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8099-b9df-c7e0a336af22" class="code"><code class="language-Python">screen -S train_joeynmt_2 bash -c &#x27;CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt train configs/small_parallel_jaen.yaml&#x27;</code></pre><p id="2067f2de-9609-8058-80dc-f5167810a096" class="">
+</p><p id="2067f2de-9609-8010-a501-d60fea7bb3ce" class="">評価の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8097-96b3-df5800ed7eca" class="code"><code class="language-Python">CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt test small_parallel_jaen/model_2/config.yaml</code></pre><p id="2067f2de-9609-80b3-9884-fd313fc263ef" class="">
+</p><p id="2067f2de-9609-807d-9504-e8f3c495d59a" class="">sacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8028-a90f-d49b2d766e03" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  38.22, 0.0192[sec]</code></pre><p id="2067f2de-9609-808c-b5bf-fe0351ad907a" class="">
+</p><p id="2067f2de-9609-8097-9870-f8ff77fcb559" class="">比較：実装前のsacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-801b-92ce-c409714b9e7b" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  36.76, 0.0195[sec]</code></pre><p id="2067f2de-9609-8005-ae20-cf942be6dd5e" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">追. yamlファイルから実装の有無を設定</summary><div class="indented"><hr id="2067f2de-9609-8051-b265-efe4389108c0"/><p id="2067f2de-9609-80f7-9533-fbadd66f7fbc" class="">model.pyにあるTransformerEncoder, TransformerDecoderの変数に以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80eb-964e-f6e12561acad" class="code"><code class="language-Python">use_relative_pos_enc=cfg.get(&quot;relative_position_encoding&quot;, False)</code></pre><p id="2067f2de-9609-80c7-8df3-feab5d02994a" class="">
+</p><p id="2067f2de-9609-80d3-9402-c014b36c3ab0" class="">encoders.pyにあるTransformerEncoderの__init__()を以下のように設定</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8084-adbe-daf7e87e142a" class="code"><code class="language-Python">def __init__(self, ..., use_relative_pos_enc=False, **kwargs):
+    self.use_relative_pos_enc = use_relative_pos_enc</code></pre><p id="2067f2de-9609-80a2-aec6-e4f69919f510" class="">
+</p><p id="2067f2de-9609-806f-bff0-f3045255823a" class="">また、TransformerEncoderLayerの変数に以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8075-ad92-d243690e55e8" class="code"><code class="language-Python">use_relative_pos_enc = use_relative_pos_enc</code></pre><p id="2067f2de-9609-80df-933c-cbb28231c2f2" class="">
+</p><p id="2067f2de-9609-8028-837e-dbe476172aee" class="">decoders.pyにあるTransformerDecoderの__init__()を以下のように設定</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8013-8ec9-fcd1c09420db" class="code"><code class="language-Python">def __init__(self, ..., use_relative_pos_enc = False, **kwargs):
+    self.use_relative_pos_enc = use_relative_pos_enc</code></pre><p id="2067f2de-9609-8025-a8b9-f589d7da6b86" class="">
+</p><p id="2067f2de-9609-80ef-b3c4-c04dda56a9a9" class="">また、TransformerDecoderLayerの変数に以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80c6-a30c-ffe8febc43e4" class="code"><code class="language-Python">use_relative_pos_enc = use_relative_pos_enc</code></pre><p id="2067f2de-9609-802e-a989-d21bfc9eec2f" class="">
+</p><p id="2067f2de-9609-809b-b1af-eb375aa7c6f1" class="">tranformer_layers.pyにあるTransformerEncoderLayerとTransformerDecoderLayerの__init__()を以下のように設定</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8085-9482-dc63dc92fd76" class="code"><code class="language-Python">def __init__(self, ..., use_relative_pos_enc = False):
+    self.use_relative_pos_enc = use_relative_pos_enc</code></pre><p id="2067f2de-9609-80f5-9ee8-def86d1add9e" class="">
+</p><p id="2067f2de-9609-8065-8f97-d84d17ad669f" class="">また、MultiHeadedAttentionの変数に以下を追加</p><p id="2067f2de-9609-8048-8c49-cb29eeae38ca" class="">※src_trgはCross_Attentionのため入力しない</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-802b-8461-d0cd8dfddf36" class="code"><code class="language-Python">use_relative_pos_enc=use_relative_pos_enc</code></pre><p id="2067f2de-9609-80b4-bdb0-d16689f9b7b8" class="">
+</p><p id="2067f2de-9609-80be-b616-fc43d1546a8f" class="">MultiHeadedAttentionの__init__()を以下のように設定</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-805f-8324-f9fde4a708e8" class="code"><code class="language-Python">def __init__(self, ..., use_relative_pos_enc = False):
+    self.use_relative_pos_enc = use_relative_pos_enc</code></pre><p id="2067f2de-9609-80fa-bb37-dd95b938d000" class="">
+</p><p id="2067f2de-9609-8044-8cc0-cc22d962c1b9" class="">MultiHeadedAttentionの相対位置エンコーディングの条件を以下のように変更</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80bb-8982-ee544c7d9702" class="code"><code class="language-Python">if self.use_relative_pos_enc:</code></pre><p id="2067f2de-9609-8063-8eb6-ec0ff1690a12" class="">
+</p><p id="2067f2de-9609-8050-9916-dd68e0cb81f4" class="">yamlファイルの設定を書き換える</p><p id="2067f2de-9609-8024-952a-e8c3a5502348" class="">※次からはここを変えるだけで相対位置エンコーディングの有無を決められる</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80c4-a720-d6dc32c20284" class="code"><code class="language-Python">model:
+  relative_position_encoding: True</code></pre><p id="2067f2de-9609-806a-a364-db3a418a8989" class="">
+</p></div></details></div></details><hr id="2067f2de-9609-809c-9e94-da8f021c6d7a"/><details open=""><summary style="font-weight:600;font-size:1.25em;line-height:1.3;margin:0">3. LLMとKLダイバージェンスを使ったMTの高精度化</summary><div class="indented"><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">1. LLMとKLダイバージェンスについての理解</summary><div class="indented"><hr id="2067f2de-9609-80d5-b56a-df3317c9625f"/><h3 id="2067f2de-9609-8083-bfe5-caa5a07638be" class="">MTにLMを使用する事の重要性<a href="https://aclanthology.org/2020.emnlp-main.615v2.pdf">[1]</a></h3><p id="2067f2de-9609-8016-af7e-eaedf91dc9e7" class=""><strong>モノリンガルデータの活用:</strong> MTには、大量の並列データが必要であり、低リソースの言語には性能が低下する。単言語のデータは比較的多く存在するため、そのデータで学習されたLMを使用し、低リソースの言語に対しても高精度を保つようにする。</p><p id="2067f2de-9609-80cd-a1b7-e1c1814c50ba" class="">
+</p><h3 id="2067f2de-9609-805f-bd9e-e1afe064c620" class="">LLMとKLダイバージェンスの適用方法<a href="https://aclanthology.org/2020.emnlp-main.615v2.pdf">[1]</a></h3><ul id="2067f2de-9609-807e-92e2-c193f78b3f6d" class="bulleted-list"><li style="list-style-type:disc">MTの出力分布をLMに近づけるために、目的関数に正則化項を追加する。<ul id="2067f2de-9609-80fe-b6e0-e6d79739deb6" class="bulleted-list"><li style="list-style-type:circle">通常の目的関数<figure id="2067f2de-9609-8016-b1d4-d38e8ed4f271" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi mathvariant="script">L</mi><mtext>NMT</mtext></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo>−</mo><mi>log</mi><mo>⁡</mo><msub><mi>p</mi><mtext>TM</mtext></msub><mo stretchy="false">(</mo><msub><mi mathvariant="bold-italic">y</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><msub><mi mathvariant="bold-italic">y</mi><mrow><mo>&lt;</mo><mi>t</mi></mrow></msub><mo separator="true">,</mo><mi mathvariant="bold-italic">x</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{equation}
+\mathcal{L}_{\text{NMT}} = \sum_{t=1}^{N} - \log p_{\text{TM}}(\bm{y}_t | \bm{y}_{&lt;t}, \bm{x})
+\end{equation}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.0954em;vertical-align:-1.2977em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7977em;"><span style="top:-3.7977em;"><span class="pstrut" style="height:3.8283em;"></span><span class="mord"><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">NMT</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">t</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">lo<span style="margin-right:0.01389em;">g</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">TM</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">y</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1864em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">y</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1864em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2715em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol">x</span></span></span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2977em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.7977em;"><span style="top:-3.7977em;"><span class="pstrut" style="height:3.8283em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2977em;"><span></span></span></span></span></span></span></span></span></div></figure></li></ul><ul id="2067f2de-9609-80f9-8001-e16b0bb5423c" class="bulleted-list"><li style="list-style-type:circle">提案手法の目的関数<figure id="2067f2de-9609-8070-84c0-c0ff26a938eb" class="equation"><style>@import url('https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css')</style><div class="equation-container"><span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.16em" columnspacing="1em"><mtr><mtd class ="mtr-glue"></mtd><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><mi mathvariant="script">L</mi><mo>=</mo><msub><mi mathvariant="script">L</mi><mtext>NMT</mtext></msub><mo>+</mo><mi>λ</mi><msup><mi mathvariant="bold-italic">τ</mi><mn>2</mn></msup><msub><mi>D</mi><mtext>KL</mtext></msub><mrow><mo fence="true">(</mo><msub><mi>p</mi><mtext>TM</mtext></msub><mo stretchy="false">(</mo><msub><mi mathvariant="bold-italic">y</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><msub><mi mathvariant="bold-italic">y</mi><mrow><mo>&lt;</mo><mi>t</mi></mrow></msub><mo separator="true">,</mo><mi mathvariant="bold-italic">x</mi><mo separator="true">;</mo><mi mathvariant="bold-italic">τ</mi><mo stretchy="false">)</mo><mo>∥</mo><msub><mi>p</mi><mtext>LM</mtext></msub><mo stretchy="false">(</mo><msub><mi mathvariant="bold-italic">y</mi><mi>t</mi></msub><mi mathvariant="normal">∣</mi><msub><mi mathvariant="bold-italic">y</mi><mrow><mo>&lt;</mo><mi>t</mi></mrow></msub><mo separator="true">;</mo><mi mathvariant="bold-italic">τ</mi><mo stretchy="false">)</mo><mo fence="true">)</mo></mrow></mrow></mstyle></mtd><mtd class ="mtr-glue"></mtd><mtd class ="mml-eqn-num"></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{equation}
+\mathcal{L} = \mathcal{L}_{\text{NMT}} + \lambda \bm{\tau}^2 D_\text{{KL}}\left(
+p_{\text{TM}}(\bm{y}_t | \bm{y}_{&lt;t}, \bm{x}; \bm{\tau})
+\parallel
+p_{\text{LM}}(\bm{y}_t | \bm{y}_{&lt;t};\bm{\tau})
+\right)
+\end{equation}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2241em;vertical-align:-0.3621em;"></span><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8621em;"><span style="top:-2.9979em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mord mathcal">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">NMT</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord mathnormal">λ</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.13472em;">τ</span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord text mtight"><span class="mord mtight"><span class="mord mtight">KL</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">TM</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">y</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1864em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">y</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1864em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2715em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol">x</span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.13472em;">τ</span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∥</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord"><span class="mord mathnormal">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">LM</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">y</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1864em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">t</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2441em;"><span></span></span></span></span></span></span><span class="mord">∣</span><span class="mord"><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.03704em;">y</span></span></span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1864em;"><span style="top:-2.4559em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mrel mtight">&lt;</span><span class="mord mathnormal mtight">t</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2715em;"><span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord"><span class="mord boldsymbol" style="margin-right:0.13472em;">τ</span></span></span><span class="mclose">)</span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3621em;"><span></span></span></span></span></span></span></span><span class="tag"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8621em;"><span style="top:-2.8621em;"><span class="pstrut" style="height:2.8641em;"></span><span class="eqn-num"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3621em;"><span></span></span></span></span></span></span></span></span></div></figure><p id="2067f2de-9609-80f9-995a-c96fee4d6e2f" class="">D_KL：MTとLMの2つの出力分布間のKLダイバージェンス</p></li></ul></li></ul><ul id="2067f2de-9609-800d-9ab3-c7578cb7c41d" class="bulleted-list"><li style="list-style-type:disc">LMはターゲット言語を学習したモデルで、LMの代わりにLLMを使用する。</li></ul><p id="2067f2de-9609-80bb-ba01-eafede2f3efe" class="">
+</p><h3 id="2067f2de-9609-802c-8066-c587e2c6ac5b" class="">参考資料</h3><p id="2067f2de-9609-8049-b67c-fc59fc4db97d" class="">[1] <a href="https://aclanthology.org/2020.emnlp-main.615v2.pdf">https://aclanthology.org/2020.emnlp-main.615v2.pdf</a></p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">2. トークナイザをLLM(Llama-3.2-1B-Instruct)に変更</summary><div class="indented"><hr id="2067f2de-9609-80cf-a2d6-f54760fc54ee"/><h3 id="2067f2de-9609-8064-8882-f2e26b8876ab" class="">LLM(Llama-3.2-1B-Instruct)のvocabを作成</h3><p id="2067f2de-9609-80cd-926f-c81771cf8e6f" class="">transformersをインストールしておく</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80df-9a36-cba93cbdcf3a" class="code"><code class="language-Python">uv add transformers</code></pre><p id="2067f2de-9609-8060-95f3-eddea25f6f33" class="">
+</p><p id="2067f2de-9609-80b2-8f4c-e03911b79cad" class="">.bashrcに以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8096-bd92-d48cb4306b53" class="code"><code class="language-Python">export HUGGING_FACE_TOKEN={トークン名}</code></pre><p id="2067f2de-9609-80ce-b3fe-d7000cf712c7" class="">
+</p><p id="2067f2de-9609-80a8-a53c-e7be1ce4f5a2" class="">llamaのvocabを保存するスクリプトの作成（./joeynmt/scriptsファイル内で自分で作成）</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80ba-8120-eb2234a2215f" class="code"><code class="language-Python">import os
+from transformers import AutoTokenizer
+
+def build_llama_vocab(output_dir):
+    token = os.environ[&#x27;HUGGING_FACE_TOKEN&#x27;]
+    tokenizer = AutoTokenizer.from_pretrained(&quot;meta-llama/Llama-3.2-1B-Instruct&quot;, token=token)
+
+    os.makedirs(output_dir, exist_ok=True)
+    output_path = os.path.join(output_dir, &quot;llama_vocab.txt&quot;)
+    vocab_items = sorted(tokenizer.get_vocab().items(), key=lambda x: x[1])
+
+    with open(output_path, &quot;w&quot;, encoding=&quot;utf-8&quot;) as f:
+        for token, _ in vocab_items:
+            f.write(token + &quot;\n&quot;)
+
+    print(f&quot;Vocabulary saved to {output_path}&quot;)</code></pre><p id="2067f2de-9609-80b5-b1ba-f252d6c0b8d9" class="">
+</p><p id="2067f2de-9609-8059-974d-c4e7c9fb3a8c" class="">__main__.pyファイルに条件分岐を追加。ないなら<a href="https://www.notion.so/1d5f2081aadb803f8d7fd3a8d41e54c5?pvs=21">こちら</a>を参照か、スクリプトを実行。</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8048-9204-fe602ca6eeef" class="code"><code class="language-Python">from .build_llama_vocab import build_llama_vocab
+
+elif command == &quot;build_llama_vocab&quot;:
+    build_llama_vocab(target_dir)</code></pre><p id="2067f2de-9609-8079-a7cf-f73fac32d221" class="">
+</p><p id="2067f2de-9609-8069-b7cd-f6cb864d8f32" class="">llamaのvocabを追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-807b-b7ef-ff72dda3113b" class="code"><code class="language-Python">python3 -m scripts build_llama_vocab small_parallel_jaen</code></pre><p id="2067f2de-9609-802f-a199-d634016c1720" class="">
+</p><h3 id="2067f2de-9609-80ac-89ed-cd58a85a8238" class="">JoeyNMTのTokenizerをLLM(Llama-3.2-1B-Instruct)に設定</h3><p id="2067f2de-9609-8090-899a-f2af3ce24c9c" class="">tokenizers.pyにHuggingFaceTokenizerクラスを追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-809a-ac8e-ebdfcb47b281" class="code"><code class="language-Python">import os
+from transformers import AutoTokenizer
+
+class HuggingFaceTokenizer(BasicTokenizer):
+    def __init__(
+        self,
+        access_token_name: str,
+        level: str = &quot;bpe&quot;,
+        lowercase: bool = False,
+        normalize: bool = False,
+        max_length: int = -1,
+        min_length: int = -1,
+        **kwargs,
+    ):
+        super().__init__(level, lowercase, normalize, max_length, min_length, **kwargs)
+        token = os.environ[access_token_name]
+        self.model_file: Path = Path(kwargs[&quot;model_file&quot;])
+        self.tokenizer = AutoTokenizer.from_pretrained(self.model_file, token=token, use_fast=True)
+        special_tokens_dict = {&quot;pad_token&quot;: &quot;&lt;|finetune_right_pad_id|&gt;&quot;, &quot;unk_token&quot;: &quot;&lt;|reserved_special_token_0|&gt;&quot;}
+        self.tokenizer.add_special_tokens(special_tokens_dict)
+
+    def __call__(self, raw_input: str, is_train: bool = False) -&gt; List[str]:
+        if raw_input is None:
+            return None
+        tokens = self.tokenizer.tokenize(raw_input)
+        if is_train and self._filter_by_length(len(tokens)):
+            return None
+        return tokens
+
+    def post_process(
+        self,
+        sequence: Union[List[str], str],
+        generate_unk: bool = True,
+        cut_at_sep: bool = True,
+    ) -&gt; str:
+        if isinstance(sequence, list):
+            if cut_at_sep and self.sep_token in sequence:
+                try:
+                    sep_pos = sequence.index(self.sep_token)
+                    sequence = sequence[sep_pos + 1:]
+                except ValueError:
+                    pass
+            sequence = self._remove_special(sequence, generate_unk=generate_unk)
+            sequence = self.tokenizer.convert_tokens_to_string(sequence)
+
+        if self.normalize:
+            sequence = remove_extra_spaces(sequence)
+        return sequence
+
+    def set_vocab(self, vocab) -&gt; None:
+        super().set_vocab(vocab)
+
+    def __repr__(self):
+        return (
+            f&quot;{self.__class__.__name__}(tokenizer={self.tokenizer.name_or_path}, &quot;
+            f&quot;lowercase={self.lowercase}, normalize={self.normalize}, &quot;
+            f&quot;filter_by_length=({self.min_length}, {self.max_length}))&quot;
+        )</code></pre><p id="2067f2de-9609-80c6-a9dd-f98814b9b91b" class="">
+</p><p id="2067f2de-9609-8035-a777-dc9fa120e1ab" class="">_build_tokenizer()関数の中に以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8020-b097-cf463a606254" class="code"><code class="language-Python">elif tokenizer_type == &quot;huggingface&quot;:
+    assert &quot;model_file&quot; in tokenizer_cfg
+    tokenizer = HuggingFaceTokenizer(
+		    access_token_name = cfg[&quot;access_token_name&quot;],
+        level=cfg[&quot;level&quot;],
+        lowercase=cfg.get(&quot;lowercase&quot;, False),
+        normalize=cfg.get(&quot;normalize&quot;, False),
+        max_length=cfg.get(&quot;max_length&quot;, -1),
+        min_length=cfg.get(&quot;min_length&quot;, -1),
+        **tokenizer_cfg,
+    )</code></pre><p id="2067f2de-9609-80e0-9bc3-f15283ad17cb" class="">
+</p><p id="2067f2de-9609-8068-a900-f2f6ec3528b0" class="">set_vocab()関数のunk_tokenとeos_tokenを以下のようにする</p><p id="2067f2de-9609-8054-8f24-fefbd8ab1193" class="">※Llamaの特殊トークンの位置が異なるため</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8059-86b1-f56b7df1a36e" class="code"><code class="language-Python">self.unk_token = vocab.specials[0]
+self.eos_token = vocab.specials[3]</code></pre><p id="2067f2de-9609-8098-998c-c528c81f73b3" class="">
+</p><p id="2067f2de-9609-8081-9b28-c3c916233b85" class="">Vocabularyクラス__init__()関数の中の関数定義を以下に変更</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80a1-b717-efa06e0edd8e" class="code"><code class="language-Python">if not (cfg.unk_token and cfg.pad_token and cfg.bos_token and cfg.eos_token):
+		self.add_tokens(tokens=self.specials + self.lang_tags + tokens)
+else:
+    self.add_tokens(tokens=self.lang_tags + tokens)</code></pre><p id="2067f2de-9609-8023-bbd5-e9b471ea0a6c" class="">
+</p><p id="2067f2de-9609-808f-a923-f1b8bc537fae" class="">small_parallel_jaen.yamlのdata:のsrc, trgを以下の設定にしておく</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-805a-8633-c5b85ccb2987" class="code"><code class="language-Python">voc_file: &quot;small_parallel_jaen/llama_vocab.txt&quot;
+tokenizer_type: &quot;huggingface&quot;
+access_token_name: &quot;HUGGING_FACE_TOKEN&quot;
+tokenizer_cfg:
+  model_file: &quot;meta-llama/Llama-3.2-1B-Instruct&quot;</code></pre><p id="2067f2de-9609-8061-a35b-e59161f02c53" class="">また、small_parallel_jaen.yamlのdata:に以下を追加しておく</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80f9-a8c2-cf84561dd010" class="code"><code class="language-Python">special_symbols:
+  pad_token: &quot;&lt;|finetune_right_pad_id|&gt;&quot;   # Llamaの語彙にはあるが認識されていない
+  unk_token: &quot;&lt;|reserved_special_token_0|&gt;&quot;# Llamaの語彙にはあるが認識されていない
+  bos_token: &quot;&lt;|begin_of_text|&gt;&quot; # JoeyNMTがLlamaの特殊トークン位置を認識していない
+  eos_token: &quot;&lt;|eot_id|&gt;&quot;        # JoeyNMTがLlamaの特殊トークン位置を認識していない
+  pad_id: 128004
+  unk_id: 128002
+  bos_id: 128000
+  eos_id: 128009</code></pre><p id="2067f2de-9609-8099-88f0-f4dc00d1a7f7" class="">
+</p><h3 id="2067f2de-9609-80e4-bdfd-efdc44381f50" class="">課題1をsmall_parallel_enja翻訳(ja→en)で評価</h3><p id="2067f2de-9609-803a-818f-f6d9281dac91" class="">任意：yamlファイルの設定を書き換える</p><p id="2067f2de-9609-809f-9042-d2d426bc2b3b" class="">※relative_position_encodingは<a href="https://www.notion.so/1d5f2081aadb803f8d7fd3a8d41e54c5?pvs=21">こちら</a>をやっていないと設定できません</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80a8-a4fa-f6ab16e6fa09" class="code"><code class="language-Python">name: &quot;small_parallel_jaen&quot;
+use_cuda: True
+fp16: True
+
+data:
+  train: &quot;/home/nishida/b4/joeynmt/small_parallel_enja/train&quot;
+  dev: &quot;/home/nishida/b4/joeynmt/small_parallel_enja/dev&quot;
+  test: &quot;/home/nishida/b4/joeynmt/small_parallel_enja/test&quot;
+  src:
+    lang: &quot;ja&quot;
+    level: &quot;bpe&quot;
+    remove_space: True
+    voc_file: &quot;small_parallel_jaen/llama_vocab.txt&quot;
+    tokenizer_type: &quot;huggingface&quot;
+    access_token_name: &quot;HUGGING_FACE_TOKEN&quot;
+    tokenizer_cfg:
+      model_file: &quot;meta-llama/Llama-3.2-1B-Instruct&quot;
+    lowercase: True
+    max_sent_length: 50
+  trg:
+    lang: &quot;en&quot;
+    level: &quot;bpe&quot;
+    voc_file: &quot;small_parallel_jaen/llama_vocab.txt&quot;
+    tokenizer_type: &quot;huggingface&quot;
+    access_token_name: &quot;HUGGING_FACE_TOKEN&quot;
+    tokenizer_cfg:
+      model_file: &quot;meta-llama/Llama-3.2-1B-Instruct&quot;
+    lowercase: True
+    max_sent_length: 50
+  special_symbols:
+    pad_token: &quot;&lt;|finetune_right_pad_id|&gt;&quot;
+    unk_token: &quot;&lt;|reserved_special_token_0|&gt;&quot;
+    bos_token: &quot;&lt;|begin_of_text|&gt;&quot;
+    eos_token: &quot;&lt;|eot_id|&gt;&quot;
+    pad_id: 128004
+    unk_id: 128002
+    bos_id: 128000
+    eos_id: 128009
+
+testing:
+  beam_size: 10
+  alpha: 1.0
+  eval_metrics: [&quot;bleu&quot;]
+
+training:
+  random_seed: 42
+  label_smoothing: 0.1
+  optimizer: &quot;adamw&quot;
+  normalization: &quot;tokens&quot;
+  adam_betas: [0.9, 0.999]
+  learning_rate: 0.0001
+  learning_rate_min: 0.00005
+  batch_size: 64
+  scheduling: &quot;plateau&quot;
+  patience: 5
+  decrease_factor: 0.5
+  early_stopping_metric: &quot;loss&quot;
+  epochs: 100000
+  validation_freq: 600
+  logging_freq: 100
+  eval_metric: [&quot;bleu&quot;]
+  model_dir: &quot;small_parallel_jaen/model_3-1&quot;
+  overwrite: False # small_parallel_jaen内の全てのファイルが消される
+  shuffle: True
+  use_cuda: True
+  max_output_length: 100
+  print_valid_sents: [0, 1, 2, 3, 4]
+
+model:
+  initializer: &quot;xavier_uniform&quot;
+  init_gain: 1.0
+  bias_initializer: &quot;zeros&quot;
+  embed_initializer: &quot;xavier_uniform&quot;
+  embed_init_gain: 1.0
+  tied_embeddings: False
+  tied_softmax: False
+  relative_position_encoding: False
+  encoder:
+    type: &quot;transformer&quot;
+    num_layers: 6
+    num_heads: 8
+    embeddings:
+      embedding_dim: 512
+      scale: True
+      freeze: False
+    hidden_size: 512
+    ff_size: 128
+    dropout: 0.3
+    layer_norm: &quot;pre&quot;
+    activation: &quot;relu&quot;
+  decoder:
+    type: &quot;transformer&quot;
+    num_layers: 6
+    num_heads: 8
+    embeddings:
+      embedding_dim: 512
+      scale: True
+      freeze: False
+    hidden_size: 512
+    ff_size: 128
+    dropout: 0.3
+    freeze: False
+    layer_norm: &quot;pre&quot;
+    activation: &quot;relu&quot;</code></pre><p id="2067f2de-9609-80d9-80aa-dc6d944bbbae" class="">
+</p><p id="2067f2de-9609-8085-b946-ca8af69c95d1" class="">訓練の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-800d-ac1f-ee6ab170fa26" class="code"><code class="language-Python">screen -S train_joeynmt_3-1 bash -c &#x27;CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt train configs/small_parallel_jaen.yaml&#x27;</code></pre><p id="2067f2de-9609-80e2-bca5-d28e7517e619" class="">
+</p><p id="2067f2de-9609-806c-93de-cdb25dfb4352" class="">評価の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80e9-8da2-fa329adb177a" class="code"><code class="language-Python">CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt test small_parallel_jaen/model_3-1/config.yaml</code></pre><p id="2067f2de-9609-80ee-a436-eb277a20fc9e" class="">
+</p><p id="2067f2de-9609-8039-a3d8-dd35e3477491" class="">sacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-800c-80d2-ed0f2770b01f" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  36.90, 0.0363[sec]</code></pre><p id="2067f2de-9609-80b7-99fd-e76a4bc9b3cc" class="">
+</p><h3 id="2067f2de-9609-8056-9426-eadcedd3bb55" class="">課題2をsmall_parallel_enja翻訳(ja→en)で評価</h3><p id="2067f2de-9609-8073-91ca-d8bf2c0da444" class="">任意：yamlファイルの設定を書き換える</p><p id="2067f2de-9609-80e2-ba95-e4dc7c0e5a72" class="">※relative_position_encodingは<a href="https://www.notion.so/1d5f2081aadb803f8d7fd3a8d41e54c5?pvs=21">こちら</a>をやっていないと設定できません</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80e8-825a-f44460ad246b" class="code"><code class="language-Python">training:
+  model_dir: &quot;small_parallel_jaen/model_3-2&quot;
+
+model:
+  relative_position_encoding: True</code></pre><p id="2067f2de-9609-80d5-ad34-e658eb12ee10" class="">
+</p><p id="2067f2de-9609-808e-b1c9-e7bfaf7d59f1" class="">訓練の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8035-beed-ff24d867a260" class="code"><code class="language-Python">screen -S train_joeynmt_3-2 bash -c &#x27;CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt train configs/small_parallel_jaen.yaml&#x27;</code></pre><p id="2067f2de-9609-802a-aad1-d56ca5c480e3" class="">
+</p><p id="2067f2de-9609-8067-a1e5-d180c3406c37" class="">評価の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80ae-9187-e30974aefecc" class="code"><code class="language-Python">CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt test small_parallel_jaen/model_3-2/config.yaml</code></pre><p id="2067f2de-9609-8090-a482-e82d8c3965b6" class="">
+</p><p id="2067f2de-9609-80ef-ae1b-cbaa01c19822" class="">sacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-802a-9477-e46fc66695c7" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  38.05, 0.0363[sec]</code></pre><p id="2067f2de-9609-80ca-8612-ee50cb2fc4fc" class="">
+</p><p id="2067f2de-9609-8020-b93d-d0ef71660cfb" class="">比較：課題1のsacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8006-bb03-daee77ddeffb" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  36.90, 0.0363[sec]</code></pre><p id="2067f2de-9609-809b-a3b2-daf6d1ac525d" class="">
+</p></div></details><details open=""><summary style="font-weight:600;font-size:1.5em;line-height:1.3;margin:0">3. LLM(Llama-3.2-1B-Instruct)とKLダイバージェンスの実装</summary><div class="indented"><hr id="2067f2de-9609-80af-bec1-f7fc540d2c73"/><h3 id="2067f2de-9609-809e-9c77-e05591996338" class="">MTとLLMでのKLダイバージェンスの実装</h3><p id="2067f2de-9609-80d3-b972-e7165186d2df" class="">model.pyにあるbuild_model関数に以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80a6-b147-cccbcf99e1e6" class="code"><code class="language-Python">lm_prior = cfg.get(&quot;lm_prior&quot;, {})</code></pre><p id="2067f2de-9609-8059-a0da-ecd76650a4b8" class="">同じ関数のModelに引数を渡しているところに以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8083-a893-ef3bff828509" class="code"><code class="language-Python">lm_prior=lm_prior</code></pre><p id="2067f2de-9609-8092-9d76-ce306ceed40c" class="">
+</p><p id="2067f2de-9609-80ce-bad9-c8e556553476" class="">model.pyにあるModelクラスの__init__()に以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80c6-84c6-d9c1c8da63e0" class="code"><code class="language-Python">def __init__(self, ..., lm_prior: dict = None) -&gt; None:
+	self.lm_prior = lm_prior</code></pre><p id="2067f2de-9609-80fd-acd3-c2fe53b21bb7" class="">
+</p><p id="2067f2de-9609-802a-84d6-ed726f7e80f8" class="">model.pyにあるModelクラスの@loss_function.setterを以下のように設定</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80a0-a3df-fc9a144ced27" class="code"><code class="language-Python">@loss_function.setter
+def loss_function(self, cfg: Tuple):
+    loss_type, label_smoothing = cfg
+    assert loss_type == &quot;crossentropy&quot;
+    self._loss_function = XentLoss(
+        pad_index=self.pad_index, smoothing=label_smoothing, lm_prior=self.lm_prior
+    )</code></pre><p id="2067f2de-9609-8072-b082-e645c04ce476" class="">
+</p><p id="2067f2de-9609-8010-a9bd-c5894e58444f" class="">model.pyにあるModelクラスの__forward__()を以下のように変更</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80cb-a262-fed8411d0f16" class="code"><code class="language-Python"># compute log pro
+if all([self.loss_function.kl_lambda, self.loss_function.kl_tau, self.loss_function.lm_model]):
+    log_probs = F.log_softmax(out, dim=-1)
+    kl_log_probs = F.log_softmax(out / self.loss_function.kl_tau, dim=-1)
+else:
+    log_probs = F.log_softmax(out, dim=-1)
+    kl_log_probs = torch.zeros_like(log_probs)
+
+# compute batch loss
+batch_loss = self.loss_function(log_probs, kl_log_probs, **kwargs)</code></pre><p id="2067f2de-9609-8034-b73f-cbf3b4d8baa2" class="">
+</p><p id="2067f2de-9609-80c8-a130-c97e6a9f9854" class="">loss.pyにあるXentLossの__init__()に以下を追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80a9-acda-e249818861e0" class="code"><code class="language-Python">from transformers import AutoModelForCausalLM, AutoTokenizer
+import torch.nn.functional as F
+
+def __init__(self,..., lm_prior: dict = None): # lm_priorを追加
+	  self.kl_lambda = lm_prior.get(&quot;kl_lambda&quot;, 0.0)
+	  self.kl_tau = lm_prior.get(&quot;kl_tau&quot;, 0.0)
+	  self.token = lm_prior.get(&quot;access_token_name&quot;, None)
+	  self.model_name = lm_prior.get(&quot;model_file&quot;, None)
+    if all([self.kl_lambda, self.kl_tau, self.model_name, self.token]):
+        self.lm_model = AutoModelForCausalLM.from_pretrained(self.model_name, token=self.token)
+        self.lm_tokenizer = AutoTokenizer.from_pretrained(self.model_name, token=self.token)
+        special_tokens_dict = {&quot;pad_token&quot;: &quot;&lt;|finetune_right_pad_id|&gt;&quot;, &quot;unk_token&quot;: &quot;&lt;|reserved_special_token_0|&gt;&quot;}
+        self.lm_tokenizer.add_special_tokens(special_tokens_dict)
+    else:
+        self.lm_model = None</code></pre><p id="2067f2de-9609-80c6-8c92-ffaf7851ff34" class="">
+</p><p id="2067f2de-9609-80ac-be99-fb08a8a6d41d" class="">XentLossの__forward__()の引数にkl_log_probs: Tensorを追加する（28行目）</p><p id="2067f2de-9609-8054-bf97-eca5deca7f0f" class="">また、XentLossの__forward__()を以下に変更</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-809f-9426-f9c10b02e165" class="code"><code class="language-Python">assert &quot;trg&quot; in kwargs
+log_probs, targets = self._reshape(log_probs, kwargs[&quot;trg&quot;])
+
+# compute loss
+logits = self.criterion(log_probs, targets)
+if all([self.kl_lambda, self.kl_tau, self.lm_model]):
+    kl_log_probs, _ = self._reshape(kl_log_probs, kwargs[&quot;trg&quot;])
+    with torch.no_grad():
+        lm_input_ids = insert_eos_before_padding(
+            kwargs[&quot;trg_input&quot;], 
+            eos_token_id=self.lm_tokenizer.eos_token_id, 
+            pad_token_id=self.lm_tokenizer.pad_token_id
+            )
+        lm_inputs = {
+            &quot;input_ids&quot;: lm_input_ids.to(log_probs.device),
+            &quot;attention_mask&quot;: (lm_input_ids != self.lm_tokenizer.pad_token_id).to(log_probs.device)
+            }
+        lm_logits = self.lm_model(**lm_inputs).logits[:, 1:, :]
+        lm_probs = F.softmax(lm_logits / self.kl_tau, dim=-1)
+        lm_probs_flat = lm_probs.reshape(-1, lm_probs.size(-1))
+        non_pad_mask = (kwargs[&quot;trg&quot;].contiguous().view(-1) != self.pad_index)
+    return logits + self.kl_lambda * self.kl_tau * self.kl_tau * F.kl_div(kl_log_probs[non_pad_mask], lm_probs_flat[non_pad_mask], reduction=&#x27;batchmean&#x27;)
+else:
+    return logits</code></pre><p id="2067f2de-9609-802c-be14-c55084c7eb22" class="">
+</p><p id="2067f2de-9609-8092-acf1-cfabb64a2fa8" class="">関数の追加</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80ac-bd54-e5c6c0caba3e" class="code"><code class="language-Python">def insert_eos_before_padding(input_ids: torch.Tensor, eos_token_id: int, pad_token_id: int) -&gt; torch.Tensor:
+    B, L = input_ids.size()
+    output_ids = torch.full((B, L + 1), pad_token_id, dtype=input_ids.dtype, device=input_ids.device)
+
+    for i in range(B):
+        seq = input_ids[i]
+        pad_pos = (seq == pad_token_id).nonzero(as_tuple=True)[0]
+        if len(pad_pos) &gt; 0:
+            insert_pos = pad_pos[0].item()
+        else:
+            insert_pos = L
+
+        output_ids[i, :insert_pos] = seq[:insert_pos]
+        output_ids[i, insert_pos] = eos_token_id
+        output_ids[i, insert_pos + 1:L + 1] = seq[insert_pos:]
+
+    return output_ids</code></pre><p id="2067f2de-9609-80dc-b109-f93a26457e89" class="">
+</p><p id="2067f2de-9609-80f8-b17d-fabd12787e93" class="">yamlファイルの設定を書き換える</p><p id="2067f2de-9609-80c3-8b7b-f2fe5fb88e1e" class="">※次からはここを変えるだけでKLダイバージェンスの設定を決められる</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-807c-9dd8-ce84ca8ba318" class="code"><code class="language-Python">model:
+  lm_prior:
+    kl_lambda: 0.5
+    kl_tau: 2.0
+    access_token_name: &quot;HUGGING_FACE_TOKEN&quot;
+    model_file: &quot;meta-llama/Llama-3.2-1B-Instruct&quot;</code></pre><p id="2067f2de-9609-8004-b797-fc013280727d" class="">
+</p><h3 id="2067f2de-9609-804a-8c92-e1524cde228f" class="">small_parallel_enja翻訳(ja→en)での評価</h3><p id="2067f2de-9609-80bb-8ed7-dc59d6bab04e" class="">任意：yamlファイルの設定を書き換える</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80da-976e-f26c7296bba4" class="code"><code class="language-Python">training:
+  model_dir: &quot;small_parallel_jaen/model_3-3&quot;</code></pre><p id="2067f2de-9609-807e-8648-fa3f5c0c214d" class="">
+</p><p id="2067f2de-9609-80a9-8e06-f6eb5eca3544" class="">訓練の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8080-858d-c023f4b94d14" class="code"><code class="language-Python">screen -S train_joeynmt_3-3 bash -c &#x27;CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt train configs/small_parallel_jaen.yaml&#x27;</code></pre><p id="2067f2de-9609-809f-8b4e-cd44dd516634" class="">
+</p><p id="2067f2de-9609-8055-9688-e1cbdf56327e" class="">評価の実行</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8008-87b3-cbebf0426e6d" class="code"><code class="language-Python">CUDA_VISIBLE_DEVICES=0 python3 -m joeynmt test small_parallel_jaen/model_3-3/config.yaml</code></pre><p id="2067f2de-9609-8075-ad0c-e56f42f9d884" class="">
+</p><p id="2067f2de-9609-80b3-8c4f-c6561b92d013" class="">課題3のsacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80ae-b05e-e185a32f6b05" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  39.09, 0.0391[sec]</code></pre><p id="2067f2de-9609-802a-8771-dde00744a50a" class="">
+</p><p id="2067f2de-9609-8036-8b5e-e6d167ba6ef6" class="">比較：課題1のsacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-8008-8b07-f79f23fd7e15" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  36.90, 0.0363[sec]</code></pre><p id="2067f2de-9609-8008-835d-c3df5bf03be2" class="">
+</p><p id="2067f2de-9609-80a2-bfb4-c6074221c2ab" class="">比較：課題2のsacreBLEUの結果</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2067f2de-9609-80dc-baa7-cbcd2d61b4c9" class="code"><code class="language-Python">Evaluation result (beam search): bleu:  38.05, 0.0363[sec]</code></pre></div></details></div></details><hr id="2067f2de-9609-80b3-bb60-e6efb0efd8a7"/><p id="2067f2de-9609-80a0-b8c0-c31a92217960" class="">
+</p></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
