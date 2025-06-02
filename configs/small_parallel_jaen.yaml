@@ -1,0 +1,109 @@
+name: "small_parallel_jaen"
+use_cuda: True
+fp16: True
+
+data:
+  train: "/home/nishida/b4/joeynmt/small_parallel_enja/train"
+  dev: "/home/nishida/b4/joeynmt/small_parallel_enja/dev"
+  test: "/home/nishida/b4/joeynmt/small_parallel_enja/test"
+  src:
+    lang: "ja"
+    level: "bpe"
+    remove_space: True
+    voc_file: "small_parallel_jaen/llama_vocab.txt"
+    tokenizer_type: "huggingface"
+    access_token_name: "HUGGING_FACE_TOKEN"
+    tokenizer_cfg:
+      model_file: "meta-llama/Llama-3.2-1B-Instruct"
+    lowercase: True
+    max_sent_length: 50
+  trg:
+    lang: "en"
+    level: "bpe"
+    voc_file: "small_parallel_jaen/llama_vocab.txt"
+    tokenizer_type: "huggingface"
+    access_token_name: "HUGGING_FACE_TOKEN"
+    tokenizer_cfg:
+      model_file: "meta-llama/Llama-3.2-1B-Instruct"
+    lowercase: True
+    max_sent_length: 50
+  special_symbols:
+    pad_token: "<|finetune_right_pad_id|>"
+    unk_token: "<|reserved_special_token_0|>"
+    bos_token: "<|begin_of_text|>"
+    eos_token: "<|eot_id|>"
+    pad_id: 128004
+    unk_id: 128002
+    bos_id: 128000
+    eos_id: 128009
+
+testing:
+  beam_size: 10
+  alpha: 1.0
+  eval_metrics: ["bleu"]
+
+training:
+  random_seed: 42
+  label_smoothing: 0.1
+  optimizer: "adamw"
+  normalization: "tokens"
+  adam_betas: [0.9, 0.999]
+  learning_rate: 0.0001
+  learning_rate_min: 0.00005
+  batch_size: 64
+  scheduling: "plateau"
+  patience: 5
+  decrease_factor: 0.5
+  early_stopping_metric: "loss"
+  epochs: 100000
+  validation_freq: 600
+  logging_freq: 100
+  eval_metric: ["bleu"]
+  model_dir: "small_parallel_jaen/model_3-3"
+  overwrite: False # small_parallel_jaen内の全てのファイルが消される
+  shuffle: True
+  use_cuda: True
+  max_output_length: 100
+  print_valid_sents: [0, 1, 2, 3, 4]
+
+model:
+  initializer: "xavier_uniform"
+  init_gain: 1.0
+  bias_initializer: "zeros"
+  embed_initializer: "xavier_uniform"
+  embed_init_gain: 1.0
+  tied_embeddings: False
+  tied_softmax: False
+  relative_position_encoding: True
+  lm_prior:
+    kl_lambda: 0.5
+    kl_tau: 2.0
+    access_token_name: "HUGGING_FACE_TOKEN"
+    model_file: "meta-llama/Llama-3.2-1B-Instruct"
+  encoder:
+    type: "transformer"
+    num_layers: 6
+    num_heads: 8
+    embeddings:
+      embedding_dim: 512
+      scale: True
+      freeze: False
+    hidden_size: 512
+    ff_size: 128
+    dropout: 0.3
+    layer_norm: "pre"
+    activation: "relu"
+  decoder:
+    type: "transformer"
+    num_layers: 6
+    num_heads: 8
+    embeddings:
+      embedding_dim: 512
+      scale: True
+      freeze: False
+    hidden_size: 512
+    ff_size: 128
+    dropout: 0.3
+    freeze: False
+    layer_norm: "pre"
+    activation: "relu"
